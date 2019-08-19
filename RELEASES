@@ -1,0 +1,57 @@
+******************************
+*
+*       *** ver-3.0 ***
+*
+*        May/2018
+*
+******************************
+New/Major:
+
+   First major release, main programs compile without warnings. Remove minor bugs (warnings).
+
+
+
+******************************
+*
+*       *** ver-2.1 ***
+*
+*        Jan/2017
+*
+******************************
+
+New/Major:
+
+  Fixes:
+      - Bad memory leak from not releasing memory dynamically allocated by histogram_int() and where_int() functions.
+
+  Added floating point versions:
+      - watershed_flood_float
+      - watershed_flood_fix_spine_float
+      - changed a few folder names
+
+To do:
+
+  - Change sizeX, sizeY,sizeZ for header in function input
+  - Decide if keep float/double versions or change to preprocessor directives
+  - Get fft free implementation
+  - Fix replicated files in src/util folder and elsewhere
+  - Find a way to enforce memory release allocated by histogram_int(), where_int(), etc. functions
+
+
+******************************
+*
+*       *** ver-2.0 ***
+*
+*        Dec/2013
+*
+******************************
+
+New/Major:
+
+ - Changed label convention. Watershed boundaries are now -1 instead of 1. This makes it easier to
+     work with watershed regions since now they start at 0.
+
+Updates:
+
+   - Minor cosmetic fixes to the code and text in executables.
+

@@ -1,0 +1,75 @@
+     _________________________________________
+    |                                         |
+    |        Hierarchical SpineWeb 1.0        |
+    |                                         | 
+    |       Miguel A. Aragon Calvo, 2008      |
+    |       last modified           2018      |
+    |                                         | 
+    |       miguel@pha.jhu.edu                |
+    |_________________________________________|
+
+Package for hierarchically decomposing the Cosmic Web into Voids, Walls and Filaments.
+The SpineWeb algorithm is based on the discrete watershed transform
+as described in Aragon et a. 2008 (in preparation). 
+
+The pipeline takes as input a density field. This is usually computed with the
+DTFE method (Schaap et al. 2007)
+
+The complete package consists of several programs (should be run in this order):
+
+median_filter
+  Cleans the density field from hot pixels arising from aliasing due
+  to the samplin scheme. It substututes the value at each pixel by the
+  median of its 27 neighbourhood if the pixel's value is higher than a
+  given number of times the median.
+
+  Median filtering should be used in order to minimize spurious local 
+  maximum spreading with the gaussian filtering (see below).
+  
+fft_smooth
+  Smooths the density field with a Gaussian kernel. This should be done
+  with a small kernel in order to smooth out small-scale fluctuations.
+  2-3 pixels is ok in general.
+
+watershed_3d
+  This is the core program of the procedure. It computes the watershed
+  transform using a combination of maximum gradient and queues algorithms.
+  The main segmentation is done by first identifying individual voids
+  by follogins the maximum gradient paths from the local minimum. 
+  Subsequently the watershed transform is computed by sorting the
+  void boundaries in density and the aplying a local version of the
+  queues algorithm. This method is effective for large grids since the
+  sorting is restricted to a small subsample of the total grid.
+
+  Subsequently for each pixel in the watershed a label is assigned as
+  function of its number of adjacent voids (inside a 27 neigbourhood).
+  We assign morpholgies by the following prescription:
+
+   # Adjacent    |    Morphology
+   -------------------------------------------------------
+    1           ->    Void
+    2           ->    Not defined (boundary of thick spine?)
+    3           ->    Wall 
+    4 or more   ->    Spine (filaments and clusters)
+
+Compute wall catalogues
+  There is a routine to copmute wall catalogues, the catalogues are stored as
+  data cubes with -1 for pixels outside walls and pixels in walls labeled with
+  their wall id
+
+compute_distances
+  Compute the distance transform. This is not part of the SpineWeb pipeline
+  but it is useful for constructing scale-space and to compute several
+  properties of the cosmic Web.
+
+There are some utilities in the double_to_float/ folder. I use double_to_float
+for reading more decent-size density fields.
+
+For comments/questions write to miguel@pha.jhu.edu
+
+   Miguel A. Aragon Calvo.
+
+
+
+
+

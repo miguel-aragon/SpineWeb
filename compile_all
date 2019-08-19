@@ -1,0 +1,46 @@
+
+
+
+#--- Watershed sort
+gcc -O3 -o watershed_sort    src/watershed_sort/watershed_sort.c  src/lib/io_files.c src/lib/numeric.c src/lib/pixel2.c src/lib/pixel3.c src/watershed_sort/src/water_functions.c src/lib/find_minima.c -lm
+
+#--- Watershed flood
+gcc -O3 -o watershed_flood  src/watershed_flood/watershed_flood.c  src/lib/io_files.c src/lib/numeric.c src/lib/pixel2.c src/lib/pixel3.c src/lib/get_closest.c src/watershed_flood/src/water_functions_uphill.c  src/lib/find_minima.c -lm
+
+#--- Watershed flood (float)
+gcc -O3 -o watershed_flood_float  src/watershed_flood/watershed_flood_float.c  src/lib/io_files.c src/lib/numeric.c src/lib/pixel2.c src/lib/pixel3.c src/watershed_flood/src/water_functions_uphill.c  src/lib/find_minima.c src/lib/get_closest.c -lm
+
+#--- Watershed flood 2D
+gcc -O3 -o watershed_flood_2d  src/watershed_flood_2d/watershed_flood_2d.c  src/lib/io_files.c src/lib/numeric.c src/lib/pixel2.c src/lib/pixel3.c src/watershed_flood_2d/src/water_functions_uphill.c  src/lib/find_minima.c src/lib/get_closest.c -lm
+
+#--- Watershed flood_fix_spine
+gcc -O3 -o watershed_flood_fix_spine  src/watershed_flood/watershed_flood_fix_spine.c  src/lib/io_files.c src/lib/numeric.c src/lib/pixel3.c src/watershed_flood/src/watershed_spine.c -lm
+
+#--- Watershed flood_fix_spine (float)
+gcc -O3 -o watershed_flood_fix_spine_float  src/watershed_flood/watershed_flood_fix_spine_float.c  src/lib/io_files.c src/lib/numeric.c src/lib/pixel3.c src/watershed_flood/src/watershed_spine.c -lm
+
+#--- Watershed to spine
+gcc -O3 -o watershed_to_spine  src/watershed_to_spine/watershed_to_spine.c  src/lib/io_files.c src/lib/numeric.c src/lib/pixel3.c src/watershed_to_spine/src/count_adjacent_voids.c -lm
+
+#--- Compute the number of regions adjacent to a given pixel including the pixel itself
+gcc -O3 -o count_voxel_degree  src/watershed_to_spine/count_voxel_degree.c  src/lib/io_files.c src/lib/numeric.c src/lib/pixel3.c src/watershed_to_spine/src/count_adjacent_regions.c -lm
+
+#--- Merge watershed_regions (incomplete watershed)
+gcc -O3 -o merge_watershed_regions  src/merge_watershed_regions/merge_watershed_regions.c src/lib/io_files.c src/lib/numeric.c src/lib/pixel2.c src/lib/pixel3.c  src/merge_watershed_regions/src/water_hierarchy.c src/lib/find_minima.c -lm
+
+#--- Make Hessian
+gcc -O3 -o hessian_simple_double src/util/hessian/hessian_simple_double.c src/lib/io_files.c
+gcc -O3 -o hessian_simple_float  src/util/hessian/hessian_simple_float.c src/lib/io_files.c
+
+
+mv watershed_sort                   bin/
+mv watershed_flood                  bin/
+mv watershed_flood_float            bin/
+mv watershed_flood_2d               bin/
+mv watershed_flood_fix_spine        bin/
+mv watershed_flood_fix_spine_float  bin/
+mv watershed_to_spine               bin/
+mv merge_watershed_regions          bin/
+mv hessian_simple_double            bin/
+mv hessian_simple_float             bin/
+mv count_voxel_degree               bin/

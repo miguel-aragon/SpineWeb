@@ -1,0 +1,3 @@
+
+
+gcc -O3 -o watershed_flood_2d src/watershed_flood_2d/watershed_flood_2d.c src/lib/io_files.c src/lib/numeric.c src/lib/pixel2.c src/lib/pixel3.c src/watershed_flood_2d/src/water_functions_uphill.c src/lib/find_minima.c src/lib/get_closest.c -lm
