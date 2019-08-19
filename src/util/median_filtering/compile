@@ -1,0 +1,1 @@
+gcc -o median_filter median_filter.c shell.c remove_peaks.c io_files.c  -lm
