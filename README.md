@@ -1,4 +1,4 @@
-## SpineWeb algorithm for filament, wall and void finder
+## SpineWeb method for filaments, walls and voids identification
 
 
 [Get the paper here](http://adsabs.harvard.edu/abs/2010ApJ...723..364A)
